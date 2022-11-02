@@ -4,6 +4,26 @@ from django.contrib import messages
 
 # Create your views here.
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+
+
+def anonymous_required(function=None, redirect_url=None):
+
+    if not redirect_url:
+        redirect_url = 'dashboard'
+
+    actual_decorator = user_passes_test(
+        lambda u: u.is_anonymous,
+        login_url=redirect_url
+    )
+
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
+
+
+@anonymous_required
 def login(request):
     if request.method == 'POST':
         email = request.POST['email'].replace(' ','').lower()
@@ -13,7 +33,7 @@ def login(request):
 
         if user:
             auth.login(request,user)
-            return redirect('home')
+            return redirect('dashboard')
         else:
             messages.error(request,"Invalid Credentials or User does not Exist")
             return redirect('register')
@@ -21,6 +41,7 @@ def login(request):
 
     return render(request, 'authorisation/login.html', {})
 
+@anonymous_required
 def register (request):
 
     if request.method == 'POST':
@@ -40,7 +61,12 @@ def register (request):
         user.save()
 
         auth.login(request,user)
-        return redirect('home')
+        return redirect('dashboard')
 
 
     return render(request, 'authorisation/register.html', {})
+
+@login_required
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
