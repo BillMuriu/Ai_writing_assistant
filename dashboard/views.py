@@ -18,20 +18,24 @@ def home(request):
 
     return render(request, 'dashboard/home.html', context)
 
-def profile(request):
 
+@login_required
+def profile(request):    
     context = {}
 
+
     if request.method == 'GET':
-        form  = ProfileForm()
+        form  = ProfileForm(instance=request.user.profile)
         context['form'] = form
         return render(request, 'dashboard/profile.html', context)
 
     if request.method == 'POST':
-        form  =  ProfileForm(request.POST)
+        form  =  ProfileForm(request.POST, instance=request.user.profile)
 
         if form.is_valid():
-            pass
+            form.save()
+            return redirect('profile')
+
 
 
     return render(request, 'dashboard/profile.html', context)
