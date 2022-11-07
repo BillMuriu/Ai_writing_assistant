@@ -8,4 +8,5 @@ urlpatterns = [
 
     ##Blog generation Routes
     path('generate-blog-topic', views.blogTopic, name='blog-topic'),
+    # path('blog-topics-generated', views.blogTopicsGenerated, name='blog-topics-generated'),
 ]

@@ -1,10 +1,3 @@
-{% extends 'layout/dashboard.html' %}
-{% load static %}
-
-
-
-
-
 {% block body %}
 
 <h2 class="mb-3">Enter your blog ideas below</h2>
@@ -28,10 +21,11 @@
 
 </form>
 
-  {% for blog in blogTopics %}
-    <p>{{blog}}</p>
-    <br>
-  {% endfor %}
+
+{% for blog in blogTopics %}
+<p>{{blog}}</p>
+<br>
+{% endfor %}
 
 
 {% endblock %}
