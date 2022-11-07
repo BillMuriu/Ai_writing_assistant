@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import user_passes_test
 ##Local Imports
 from .forms import *
 from .models import *
+from .functions import *
 
 
 @login_required
@@ -39,3 +40,15 @@ def profile(request):
 
 
     return render(request, 'dashboard/profile.html', context)
+
+
+def blogTopic(request):
+    context = {}
+
+    if request.method == 'POST':
+        blogIdea = request.POST['blogIdea']
+        keywords = request.POST['keywords']
+
+        blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
+
+    return render(request, 'dashboard/blog-topic.html')
