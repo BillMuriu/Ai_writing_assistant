@@ -1,0 +1,73 @@
+/* @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#result-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #28857E;
+}
+
+.text-box {
+    position: relative;
+    background: #fff;
+    max-width: 600px;
+    min-width: 300px;
+    width: 100%;
+    margin: 80px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgb(1 1 1 / 70%);
+}
+
+.text-box .top-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0;
+}
+
+.text-box .top-area h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.copy-btn {
+    margin-left: 87%;
+}
+
+.text-box .top-area .copy-btn {
+    background: #eee;
+    color: #999;
+    font-size: 1.5em;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.text-box .top-area .copy-btn:hover {
+    color: #222;
+}
+
+.text-box #text-area {
+    width: 100%;
+    min-height: 250px;
+    font-size: 1em;
+    padding: 10px;
+    outline: none;
+    resize: none;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgb(1 1 1 / 40%);
+    border: none;
+} */

@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'tools/css/style.css' %}">
 </head>
 
@@ -154,25 +155,63 @@
 
                                         <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myMessage">
-                                            Launch demo modal
+                                            view results
                                             </button>
 
                                             <div class="modal fade" id="myMessage" tabindex="-1" aria-labelledby="myMessageLabel" aria-hidden="true">
-                                              <div class="modal-dialog">
+                                              <div class="modal-dialog  modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
                                                     <h5 class="modal-title" id="myMessageLabel"></h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body text-center">
-                                                    <div class="text-center text-success mt-3">
-                                                      <i class="far fa-check-circle fa-6x" style="color: #a5dc86;"></i>
+
+                                                    <div id="result-body">
+
+                                                        <div class="text-box">
+                                                            {% for blog in blogTopics %}
+                                                            <textarea id="text-area" readonly spellcheck="false">
+                                                              {{blog}}
+                                                            </textarea>
+                                                            <div class="top-area">
+                                                                <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+
+
+                                                          <!-- // $(document).ready(function() {
+                                                          //   $("#myMessage").modal('show');
+                                                          // }); -->
+
+                                                            {% for blog in blogTopics %}
+                                                            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                                                            <script type="text/javascript">
+                                                                const copyBtn = document.querySelector(".copy-btn");
+                                                                const textarea = document.querySelector("#text-area");
+
+                                                                copyBtn.addEventListener("click", () => {
+                                                                    textarea.select();
+                                                                    document.execCommand("copy");
+                                                                    copyBtn.innerHTML = "<i class='fas fa-check'></i>";
+                                                                    copyBtn.style.background = "#2DCDA7";
+                                                                    copyBtn.style.color = "#fff";
+
+                                                                    setTimeout(() => {
+                                                                        document.getSelection().removeAllRanges();
+                                                                        copyBtn.innerHTML = "<i class='fas fa-copy'></i>";
+                                                                        copyBtn.style.background = "";
+                                                                        copyBtn.style.color = "";
+                                                                    }, 500);
+                                                                });
+                                                            </script>
+                                                            {% endfor %}
+
+
+                                                        <!-- <script src="script.js"></script> -->
                                                     </div>
-                                                    <br>
-                                                    {% for blog in blogTopics %}
-                                                    <p>{{blog}}</p>
-                                                    <br>
-                                                    {% endfor %}
+
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="width: 65px;">Close</button>
@@ -193,16 +232,11 @@
                         <h2>Recent Customers</h2>
                     </div>
 
-                    {% for blog in blogTopics %}
-                      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                      <script>
-                        $(document).ready(function() {
-                          $("#myMessage").modal('show');
-                        });
-                      </script>
+                    <!-- {% for blog in blogTopics %} -->
+
                       <!-- <p><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script></p>
                       <br> -->
-                    {% endfor %}
+                    <!-- {% endfor %} -->
 
 
 
