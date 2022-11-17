@@ -43,24 +43,51 @@ def profile(request):
 
 
 def blogTopic(request):
-    # context = {}
+    context = {}
 
     if request.method == 'POST':
         blogIdea = request.POST['blogIdea']
         keywords = request.POST['keywords']
 
-        blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
-        if len(blogTopics) > 0:
-            request.session['blogTopics'] = blogTopics
-            return redirect('blog-topic')
-        else:
-            messages.error(request,"Oops")
-            return redirect('blog-topic')
 
-    context = {}
-    context['blogTopics'] = request.session['blogTopics']
+        blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
+        context['blogTopics'] = blogTopics
+            # if len(blogTopics) > 0:
+            #     request.session['blogTopics'] = blogTopics
+            #     return redirect('blog-topic')
+            # else:
+            #     messages.error(request,"Oops")
+            #     return redirect('blog-topic')
 
     return render(request, 'dashboard/blog-topic.html', context)
+
+# def blogSections(request):
+#     if 'blogTopics' in request.session:
+#         pass
+#     else:
+#         messages.error(request,"Create blog topic ideas")
+#         return redirect('blog-topic')
+#
+#     context = {}
+#     context['blogTopics'] = request.session['blogTopics']
+#
+#     return render(request, 'dashboard/blog-sections.html', context)
+
+    # if request.method == 'POST':
+    #     blogIdea = request.POST['blogIdea']
+    #     keywords = request.POST['keywords']
+    #
+    #     blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
+    #     if len(blogTopics) > 0:
+    #         request.session['blogTopics'] = blogTopics
+    #         return redirect('blog-topic')
+    #     else:
+    #         messages.error(request,"Oops")
+    #         return redirect('blog-topic')
+    #
+    # context = {}
+    # context['blogTopics'] = request.session['blogTopics']
+
 
 # def blogTopicsGenerated(request):
 #     if 'blogTopics' in request.session:

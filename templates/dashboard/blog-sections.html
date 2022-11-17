@@ -1,9 +1,3 @@
-{% load static %}
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,19 +81,6 @@
                 <input type="date">
             </div>
 
-            <form method="POST">
-              {% csrf_token %}
-                <div class="text-box">
-
-                    <textarea id="text-area3" type="text" name="blogIdea" placeholder="Enter the blog idea..."></textarea>
-                    <textarea id="text-area3" type="text" name="keywords" placeholder="Enter the blog topic keywords..."></textarea>
-                    <!-- <textarea id="text-area1" placeholder="Enter a message..."></textarea> -->
-                    <div class="top-area">
-                        <button class="submit-btn" type="submit">Generate blog topic ideas</button>
-                    </div>
-                </div>
-            </form>
-
 
             <div class="insights">
             </div>
@@ -110,13 +91,13 @@
                 <table>
 
                         <div class="text-box">
-                            {% for blog in blogTopics %}
-                            <textarea id="text-area" readonly spellcheck="false">{{blog}}
+                            <textarea id="text-area" readonly spellcheck="false">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
                             </textarea>
                             <div class="top-area">
                                 <div class="copy-btn"><i class="fas fa-copy"></i></div>
                             </div>
-                            {% endfor %}
                         </div>
                 </table>
                 <a href="#">Show All</a>

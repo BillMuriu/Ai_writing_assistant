@@ -10,7 +10,7 @@ def generateBlogTopicIdeas(topic, keywords):
     blog_topics = []
     response = openai.Completion.create(
       model="text-davinci-002",
-      prompt="Generate Blog Topic ideas on the following topic: {}\nKeywords: {} \n*".format(topic, keywords),
+      prompt="Generate Blog Topic ideas on the following topic: {}\nKeywords: {} \n *".format(topic, keywords),
       temperature=0.79,
       max_tokens=321,
       top_p=1,
