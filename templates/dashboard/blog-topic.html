@@ -39,11 +39,11 @@
                 </a>
                 <a href="#" class="active">
                     <span class="material-icons-sharp">person</span>
-                    <h3>Customers</h3>
+                    <h3>Blog Topic Ideas</h3>
                 </a>
-                <a href="#">
+                <a href="{% url 'blog-sections' %}">
                     <span class="material-icons-sharp">receipt_long</span>
-                    <h3>Orders</h3>
+                    <h3>Blog Outline</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">insights</span>
@@ -107,18 +107,43 @@
 
             <div class="recent-orders">
                 <h2>Recent Orders</h2>
-                <table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Blog Title</th>
+                            <!-- <th>Save Topic</th>
+                            <th>Copy Topic</th> -->
+                        </tr>
+                    </thead>
 
-                        <div class="text-box">
-                            {% for blog in blogTopics %}
-                            <textarea id="text-area" readonly spellcheck="false">{{blog}}
-                            </textarea>
-                            <div class="top-area">
-                                <div class="copy-btn"><i class="fas fa-copy"></i></div>
-                            </div>
-                            {% endfor %}
-                        </div>
+                    <tbody>
+                        {% for blog in blogTopics %}
+                        <tr>
+                            <td>{{blog}}</td>
+                            <td><button class="save-topic">Save</button></td>
+                            <td>
+                              <div class="top-area">
+                                  <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                              </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
+
+                <!-- <div class="text-box">
+                    {% for blog in blogTopics %}
+                    <textarea id="text-area" readonly spellcheck="false"><p>{{blog}}</p>
+                    </textarea>
+                    <br>
+                    <div class="top-area">
+                        <div class="copy-btn"><i class="fas fa-copy"></i></div>
+                    </div>
+                    {% endfor %}
+                </div> -->
+
+
+
                 <a href="#">Show All</a>
             </div>
         </main>

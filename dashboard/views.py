@@ -61,17 +61,17 @@ def blogTopic(request):
 
     return render(request, 'dashboard/blog-topic.html', context)
 
-# def blogSections(request):
-#     if 'blogTopics' in request.session:
-#         pass
-#     else:
-#         messages.error(request,"Create blog topic ideas")
-#         return redirect('blog-topic')
-#
-#     context = {}
-#     context['blogTopics'] = request.session['blogTopics']
-#
-#     return render(request, 'dashboard/blog-sections.html', context)
+def blogSections(request):
+    # if 'blogTopics' in request.session:
+    #     pass
+    # else:
+    #     messages.error(request,"Create blog topic ideas")
+    #     return redirect('blog-topic')
+    #
+    # context = {}
+    # context['blogTopics'] = request.session['blogTopics']
+
+    return render(request, 'dashboard/blog-sections.html')
 
     # if request.method == 'POST':
     #     blogIdea = request.POST['blogIdea']
@@ -100,3 +100,20 @@ def blogTopic(request):
 #     context['blogTopics'] = request.session['blogTopics']
 #
 #     return render(request, 'dashboard/blog-topics-generated.html', context)
+# @login_required
+# def saveBlogTopic(request, blogTopic):
+#     context = {}
+#
+#     if request.method == 'POST':
+#         blog = Blog.objects.create(
+#         title = blogTopic,
+#         blogIdea = request.POST['blogIdea'],
+#         keywords = request.POST['keywords'],
+#         profile = request.user.profile)
+#         blog.save()
+#
+#         blogTopics = context['blogTopics']
+#         blogTopics.remove(blogTopic)
+#         context['blogTopics'] = blogTopics
+#
+#         return redirect('dashboard/blog-topic.html', {})

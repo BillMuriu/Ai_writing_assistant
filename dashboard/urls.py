@@ -10,5 +10,9 @@ urlpatterns = [
 
     ##Blog generation Routes
     path('blog-topic', views.blogTopic, name='blog-topic'),
-    # path('blog-topics-generated', views.blogTopicsGenerated, name='blog-topics-generated'),
+    path('blog-sections', views.blogSections, name='blog-sections'),
+
+    ##Saving the blog topic for future use
+
+    # path('save-blog-topic/<str:blogTopic>/', views.saveBlogTopic, name='save-blog-topic'),
 ]
