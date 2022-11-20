@@ -10,9 +10,7 @@ urlpatterns = [
 
     ##Blog generation Routes
     path('blog-topic', views.blogTopic, name='blog-topic'),
-    path('blog-sections', views.blogSections, name='blog-sections'),
+    path('blog-sections', views.blogSectionsTitles, name='blog-sections'),
 
-    ##Saving the blog topic for future use
-
-    # path('save-blog-topic/<str:blogTopic>/', views.saveBlogTopic, name='save-blog-topic'),
+    path('billing', views.billing, name='billing'),
 ]

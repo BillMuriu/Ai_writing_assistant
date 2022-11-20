@@ -14,6 +14,13 @@ import os
 # Create your models here.
 
 class Profile(models.Model):
+    SUBSCRIPTION_OPTIONS = [
+    ('free', 'free'),
+    ('starter', 'starter'),
+    ('advanced', 'advanced'),
+    ]
+
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     addressLine1 = models.CharField(null=True, blank=True, max_length=100)
     addressLine2 = models.CharField(null=True, blank=True, max_length=100)
@@ -22,6 +29,12 @@ class Profile(models.Model):
     country = models.CharField(null=True, blank=True, max_length=100)
     postalCode = models.CharField(null=True, blank=True, max_length=100)
     profileImage = ResizedImageField(size=[200, 200], quality=90, upload_to='profile_images')
+
+    ##Subscription helpers
+    monthlyCount = models.CharField(null=True, blank=True, max_length=100)
+    subscribed = models.BooleanField(default=False)
+    subscriptionType = models.CharField(choices=SUBSCRIPTION_OPTIONS, default='free', max_length=100)
+    subscriptionReference = models.CharField(null=True, blank=True, max_length=500)
 
     #Utility Variable
     uniqueId = models.CharField(null=True, blank=True, max_length=100)

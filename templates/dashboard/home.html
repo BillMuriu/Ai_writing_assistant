@@ -9,4 +9,17 @@
 
 <h1>You have reached the dashboard page</h1>
 
+<h5>Your month count is {{monthCount}}</h5>
+
+{% if not allowance %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="alert alert-warning">
+      <h6 class="alert-heading fw-bold mb-1">Upgrade Account</h6>
+      <p class="mb-0">You have maxed out your words allowance <a href="{% url 'billing' %}">here</a></p>
+    <div>
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}

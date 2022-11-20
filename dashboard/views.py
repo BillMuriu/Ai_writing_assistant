@@ -15,7 +15,10 @@ from .functions import *
 @login_required
 def home(request):
 
+    allowance = checkCountAllowance(request.user.profile)
     context = {}
+    context['monthCount'] = request.user.profile.monthlyCount
+    context['allowance'] = allowance
 
     return render(request, 'dashboard/home.html', context)
 
@@ -50,70 +53,27 @@ def blogTopic(request):
         keywords = request.POST['keywords']
 
 
-        blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
+        blogTopics = generateBlogTopicIdeas(blogIdea, keywords, request.user.profile)
         context['blogTopics'] = blogTopics
-            # if len(blogTopics) > 0:
-            #     request.session['blogTopics'] = blogTopics
-            #     return redirect('blog-topic')
-            # else:
-            #     messages.error(request,"Oops")
-            #     return redirect('blog-topic')
+
 
     return render(request, 'dashboard/blog-topic.html', context)
 
-def blogSections(request):
-    # if 'blogTopics' in request.session:
-    #     pass
-    # else:
-    #     messages.error(request,"Create blog topic ideas")
-    #     return redirect('blog-topic')
-    #
-    # context = {}
-    # context['blogTopics'] = request.session['blogTopics']
+def blogSectionsTitles(request):
+    context = {}
 
-    return render(request, 'dashboard/blog-sections.html')
-
-    # if request.method == 'POST':
-    #     blogIdea = request.POST['blogIdea']
-    #     keywords = request.POST['keywords']
-    #
-    #     blogTopics = generateBlogTopicIdeas(blogIdea, keywords)
-    #     if len(blogTopics) > 0:
-    #         request.session['blogTopics'] = blogTopics
-    #         return redirect('blog-topic')
-    #     else:
-    #         messages.error(request,"Oops")
-    #         return redirect('blog-topic')
-    #
-    # context = {}
-    # context['blogTopics'] = request.session['blogTopics']
+    if request.method == 'POST':
+        blogTopicIdea = request.POST['blogTopicIdea']
+        keywords = request.POST['keywords']
 
 
-# def blogTopicsGenerated(request):
-#     if 'blogTopics' in request.session:
-#         pass
-#     else:
-#         messages.error(request,"Start by creating blog topic ideas")
-#         return redirect('blog-topic')
-#
-#     context = {}
-#     context['blogTopics'] = request.session['blogTopics']
-#
-#     return render(request, 'dashboard/blog-topics-generated.html', context)
-# @login_required
-# def saveBlogTopic(request, blogTopic):
-#     context = {}
-#
-#     if request.method == 'POST':
-#         blog = Blog.objects.create(
-#         title = blogTopic,
-#         blogIdea = request.POST['blogIdea'],
-#         keywords = request.POST['keywords'],
-#         profile = request.user.profile)
-#         blog.save()
-#
-#         blogTopics = context['blogTopics']
-#         blogTopics.remove(blogTopic)
-#         context['blogTopics'] = blogTopics
-#
-#         return redirect('dashboard/blog-topic.html', {})
+        blogSectionTitles = generateBlogSectionTitles(blogTopicIdea, keywords, request.user.profile)
+        context['blogSectionTitles'] = blogSectionTitles
+
+
+    return render(request, 'dashboard/blog-sections.html', context)
+
+
+def billing(request):
+        context = {}
+        return render(request, 'dashboard/billing.html', context)

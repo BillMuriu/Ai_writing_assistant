@@ -84,6 +84,19 @@
                 <input type="date">
             </div>
 
+            <form method="POST">
+              {% csrf_token %}
+                <div class="text-box">
+
+                    <textarea id="text-area3" type="text" name="blogTopicIdea" placeholder="Enter the blog Topic here..."></textarea>
+                    <textarea id="text-area3" type="text" name="keywords" placeholder="Enter the blog topic keywords..."></textarea>
+                    <!-- <textarea id="text-area1" placeholder="Enter a message..."></textarea> -->
+                    <div class="top-area">
+                        <button class="submit-btn" type="submit">Generate blog topic ideas</button>
+                    </div>
+                </div>
+            </form>
+
 
             <div class="insights">
             </div>
@@ -92,16 +105,27 @@
             <div class="recent-orders">
                 <h2>Recent Orders</h2>
                 <table>
+                  <thead>
+                      <tr>
+                          <th>Blog Title</th>
+                          <!-- <th>Save Topic</th>
+                          <th>Copy Topic</th> -->
+                      </tr>
+                  </thead>
 
-                        <div class="text-box">
-                            <textarea id="text-area" readonly spellcheck="false">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis recusandae culpa voluptates alias unde hic vitae. Non, neque. Suscipit consectetur quaerat delectus blanditiis ducimus quos, doloribus itaque voluptatem quia officia.
-                            </textarea>
+                  <tbody>
+                      {% for section in blogSectionTitles %}
+                      <tr>
+                          <td>{{section}}</td>
+                          <td><button class="save-topic">Save</button></td>
+                          <td>
                             <div class="top-area">
                                 <div class="copy-btn"><i class="fas fa-copy"></i></div>
                             </div>
-                        </div>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
                 </table>
                 <a href="#">Show All</a>
             </div>
