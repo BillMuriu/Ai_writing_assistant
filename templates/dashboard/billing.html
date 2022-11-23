@@ -746,6 +746,25 @@
       }).render('#paypal-button-container-1'); // Renders the PayPal button
     </script>
 
+
+
+
+    <script>
+      paypal.Buttons({
+        createSubscription: function(data, actions) {
+          return actions.subscription.create({
+            'plan_id': 'P-8TH03899CE334032SMN5VZVY' // Creates the starter plan subscription $9
+          });
+        },
+        onApprove: function(data, actions) {
+          alert('You have successfully created subscription ' + data.subscriptionID); // Optional message given to subscriber
+        },
+        onCancel: function (data) {
+        alert('you have cancelled your subscription'); //happens when subscription is cancelled
+        }
+      }).render('#paypal-button-container-2'); // Renders the PayPal button
+    </script>
+
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 

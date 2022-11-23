@@ -52,29 +52,65 @@
 
 
 
+
 {
-    "id": "P-23V55237812222736MN5SXMA",
+    "id": "P-9V654635S65843453MN5VRLY",
     "product_id": "PROD-11J566810B5671737",
-    "name": "starter Plan",
+    "name": "starter plan",
     "status": "ACTIVE",
     "description": "zanshinAi starter plan at 9 dollars per month ",
     "usage_type": "LICENSED",
-    "create_time": "2022-11-21T07:41:36Z",
+    "create_time": "2022-11-21T10:53:35Z",
     "links": [
         {
-            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-23V55237812222736MN5SXMA",
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-9V654635S65843453MN5VRLY",
             "rel": "self",
             "method": "GET",
             "encType": "application/json"
         },
         {
-            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-23V55237812222736MN5SXMA",
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-9V654635S65843453MN5VRLY",
             "rel": "edit",
             "method": "PATCH",
             "encType": "application/json"
         },
         {
-            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-23V55237812222736MN5SXMA/deactivate",
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-9V654635S65843453MN5VRLY/deactivate",
+            "rel": "self",
+            "method": "POST",
+            "encType": "application/json"
+        }
+    ]
+}
+
+
+
+
+
+
+{
+    "id": "P-8TH03899CE334032SMN5VZVY",
+    "product_id": "PROD-8FX60005C8288023N",
+    "name": "advanced plan",
+    "status": "ACTIVE",
+    "description": "zanshinAi advanced plan at 1 dollars per month ",
+    "usage_type": "LICENSED",
+    "create_time": "2022-11-21T11:11:19Z",
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-8TH03899CE334032SMN5VZVY",
+            "rel": "self",
+            "method": "GET",
+            "encType": "application/json"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-8TH03899CE334032SMN5VZVY",
+            "rel": "edit",
+            "method": "PATCH",
+            "encType": "application/json"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/billing/plans/P-8TH03899CE334032SMN5VZVY/deactivate",
             "rel": "self",
             "method": "POST",
             "encType": "application/json"

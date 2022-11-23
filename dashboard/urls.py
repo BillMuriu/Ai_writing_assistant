@@ -13,4 +13,5 @@ urlpatterns = [
     path('blog-sections', views.blogSectionsTitles, name='blog-sections'),
 
     path('billing', views.billing, name='billing'),
+    path('48e036b0-1749-4348-8982-39e17e913b1d', views.webhook, name='webhook'),
 ]

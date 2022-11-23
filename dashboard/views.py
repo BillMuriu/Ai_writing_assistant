@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
+from django.views.decorators.http import require_POST
+from django.views.decorators.http import csrf_exempt
+
 ##Local Imports
 from .forms import *
 from .models import *
@@ -77,3 +80,11 @@ def blogSectionsTitles(request):
 def billing(request):
         context = {}
         return render(request, 'dashboard/billing.html', context)
+
+
+
+@require_POST
+@csrf_exempt
+def webhook(request):
+    #Verify that the request is coming from paypal
+    return redirect('billing')
