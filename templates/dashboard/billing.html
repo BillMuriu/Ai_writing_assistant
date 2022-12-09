@@ -730,24 +730,6 @@
     <script src="{% static 'assets/js/pages-account-settings-account.js' %}"></script>
 
 
-    <script>
-      paypal.Buttons({
-        createSubscription: function(data, actions) {
-          return actions.subscription.create({
-            'plan_id': 'P-9V654635S65843453MN5VRLY' // Creates the starter plan subscription $9
-          });
-        },
-        onApprove: function(data, actions) {
-          alert('You have successfully created subscription ' + data.subscriptionID); // Optional message given to subscriber
-        },
-        onCancel: function (data) {
-        alert('you have cancelled your subscription'); //happens when subscription is cancelled
-        }
-      }).render('#paypal-button-container-1'); // Renders the PayPal button
-    </script>
-
-
-
 
     <script>
       paypal.Buttons({
@@ -757,13 +739,77 @@
           });
         },
         onApprove: function(data, actions) {
-          alert('You have successfully created subscription ' + data.subscriptionID); // Optional message given to subscriber
+          //What I should have done on the webhook
+
+          $.ajax({
+            type: "POST",
+            url: "{% url 'payment-success' %}",
+            data: {
+                'subscriptionID': data.subscriptionID,
+                'type':'starter',
+                'userId': "{{user.profile.uniqueId|safe}}",
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+               },
+            success: function (data) {
+              if (data.result == 'SUCCESS') {
+                window.location.href = "{% url 'billing' %}";
+              }
+
+              if (data.result == 'FAIL') {
+                alert('Something went wrong')
+              }
+            }
+          });
+
         },
         onCancel: function (data) {
-        alert('you have cancelled your subscription'); //happens when subscription is cancelled
+        alert('you have cancelled your PayPal payment - please try again.'); //happens when subscription is cancelled
+        }
+      }).render('#paypal-button-container-1'); // Renders the PayPal button
+    </script>
+
+
+    <script>
+      paypal.Buttons({
+        createSubscription: function(data, actions) {
+          return actions.subscription.create({
+            'plan_id': 'P-9V654635S65843453MN5VRLY' // Creates the starter plan subscription $9
+          });
+        },
+        onApprove: function(data, actions) {
+
+          $.ajax({
+            type: "POST",
+            url: "{% url 'payment-success' %}",
+            data: {
+                'subscriptionID': data.subscriptionID,
+                'type':'advanced',
+                'userId': "{{user.profile.uniqueId|safe}}",
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+               },
+            success: function (data) {
+              if (data.result == 'SUCCESS') {
+                window.location.href = "{% url 'billing' %}";
+              }
+
+              if (data.result == 'FAIL') {
+                alert('Something went wrong')
+            }
+          });
+
+          alert('You have successfully created subscription ' + data.subscriptionID);
+          //To be moved to the webhook later
+        },
+        onCancel: function (data) {
+        alert('you have cancelled your paypal subscription'); //happens when subscription is cancelled
         }
       }).render('#paypal-button-container-2'); // Renders the PayPal button
     </script>
+
+
+
+
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

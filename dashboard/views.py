@@ -7,7 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
 from django.views.decorators.http import require_POST
-from django.views.decorators.http import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
+
+
+from django.http import JsonResponse
+
 
 ##Local Imports
 from .forms import *
@@ -87,4 +91,38 @@ def billing(request):
 @csrf_exempt
 def webhook(request):
     #Verify that the request is coming from paypal
+
+    #check the type of environment
+    #1.subscription Created
+    #2.subscription cancelled
+    #3.check if payments have bounced
+
+    #Process the event
     return redirect('billing')
+
+
+@login_required
+def paypalPaymentSuccess(request):
+    if request.POST['type'] == 'starter':
+        try:
+            profile = Profile.objects.get(uniqueId=request.POST['userId'])
+            profile.subscribed = True
+            profile.subscriptionType = 'starter'
+            profile.subscriptionReference = request.POST['subscriptionID']
+            profile.save()
+            return JsonResponse({'result': 'SUCCESS'})
+        except:
+            return JsonResponse({'result': 'FAIL'})
+
+    elif request.POST['type'] == 'advanced':
+        try:
+            profile = Profile.objects.get(uniqueId=request.POST['userId'])
+            profile.subscribed = True
+            profile.subscriptionType = 'advanced'
+            profile.subscriptionReference = request.POST['subscriptionID']
+            profile.save()
+            return JsonResponse({'result': 'SUCCESS'})
+        except:
+            return JsonResponse({'result': 'FAIL'})
+    else:
+        return JsonResponse({'result': 'FAIL'})
